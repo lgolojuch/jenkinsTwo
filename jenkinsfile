@@ -15,7 +15,7 @@ stages {
     stage('Run Gradle Tests') {
       steps {
         echo "Running Gradle tests..."
-        sh './gradlew test"'
+        sh './gradlew test'
       }
     }
 
