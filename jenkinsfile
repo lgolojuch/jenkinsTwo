@@ -2,14 +2,16 @@ pipeline {
   agent any
   stages {
     stage('Checkout') {
-      steps {
-        echo 'Do the checkout'
-      } 
+        steps {
+            echo "Cloning test repository..."
+            git branch: 'main', url: 'https://github.com/lukaszgolojuch/trainingSauceDemo'
+        }
     }
-    stage('Run tests') {
+    stage('Run Gradle Tests') {
       steps {
-        echo 'Run tests'
-      } 
+        echo "Running Gradle tests..."
+        sh './gradlew clean test'
+      }
     }
   }
 }  
