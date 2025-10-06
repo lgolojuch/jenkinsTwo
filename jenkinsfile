@@ -1,16 +1,23 @@
 pipeline {
   agent any
-  stages {
+  parameters {
+        string(name: 'BRANCH', defaultValue: 'main', description: 'Branch do checkoutu')
+  }
+
+  
+stages {
     stage('Checkout') {
-            steps {
-                git url: 'https://github.com/lukaszgolojuch/PlaywrightTests', branch: "main"
-            }
+        steps {
+          git url: 'https://github.com/lukaszgolojuch/PlaywrightTests', branch: "$params.BRANCH"
         }
+    }
+
     stage('Run Gradle Tests') {
       steps {
         echo "Running Gradle tests..."
-        sh './gradlew test'
+        sh './gradlew test"'
       }
     }
+
   }
 }  
